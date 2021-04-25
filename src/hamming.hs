@@ -1,8 +1,21 @@
 import Data.Bits
 
-hammingCheck :: [Int] -> Either String Int
-hammingCheck bits = if indexError == 0 then Left "Nenhum erro ocorreu" else Right indexError
-    where indexError = foldl xor 0 (getIndexsBitActive bits)
+hammingCheckErrorPosition :: [Int] -> Int
+hammingCheckErrorPosition bits = foldl xor 0 (getIndexsBitActive bits)
+
+-- hammingCorrector :: [Int] -> [Int]
+-- hammingCorrector bits
+--     | hammingCheckErrorPosition bits == 0 = bits
+--     | otherwise = invertBitAtPosition bits errorPosition
+--         where errorPosition = hammingCheckErrorPosition bits
+
+-- invertBitAtPosition :: [Int] -> Int -> [Int]
+-- invertBitAtPosition bits position
+--     | position == 0 = myComplementBit (head bits) : tail bits
+--     | otherwise = invertBitAtPosition bits (position - 1)
+-- myComplementBit :: Int -> Int
+-- myComplementBit 0 = 1
+-- myComplementBit 1 = 0
 
 getIndexsBitActive :: [Int] -> [Int]
 getIndexsBitActive bits = aux bits 0 []
